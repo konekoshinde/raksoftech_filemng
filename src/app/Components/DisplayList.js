@@ -88,7 +88,7 @@ function DisplayList(props) {
 
             
             
-            <form id='frm' className='my-3'>
+        {/* <form id='frm' className='my-3'>
                 <input className='m-1 py-1 border-0 font-bold  text-black' placeholder='id-number' type='number' onChange={(e)=>setNewrecord( {...newrecord,id:e.target.value} )}/>
                 
                 <input className='m-1 py-1 border-0 font-bold  text-black' placeholder='url' type="file" onChange={(e)=>{handleFileChange(e);
@@ -117,6 +117,7 @@ function DisplayList(props) {
                 }}><AddIcon className='pt-2'/></button>
                 
             </form>
+            */}
         
 
         <div className=' flex flex-col h-96 overflow-y-scroll'>
