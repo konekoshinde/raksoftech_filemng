@@ -133,7 +133,7 @@ function DisplayList(props) {
                     
                     return(
                     
-                    <div className='flex flex-row md:gap-x-10 sm:px-5 xl:gap-x-28' style={{backgroundColor:(ind%2)?"rgb(207 250 254)":"white"}}>
+                    <div key={ind} className='flex flex-row md:gap-x-10 sm:px-5 xl:gap-x-28' style={{backgroundColor:(ind%2)?"rgb(207 250 254)":"white"}}>
                         
                         <Cell name={i.id}/>
                         <Cell name={i.name}/>
