@@ -83,7 +83,7 @@ function DisplayList(props) {
     
     console.log(rows)
     return (
-        <div className=' lg:ps-20 md:ps-10 sm:p-0 flex flex-col xl:flex-row'>
+        <div className=' lg:ps-20 md:ps-10 sm:p-0 flex flex-col xl:flex-row my-3'>
             <div className='flex flex-col'>
 
             
