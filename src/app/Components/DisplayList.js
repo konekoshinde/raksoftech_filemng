@@ -25,13 +25,13 @@ function createData(name,id, date){
 function DisplayList(props) {
     const [rows,setRows] = useState([
     [
-        createData('img', 1,'2004-04-12',"img1.jpg"),
-        createData('imgnuhidalnzx', 2,'2002-12-23',"img1.jpg"),
+        createData('img1.jpg', 1,'2004-04-12'),
+        createData('cat-551554_1280.jpg', 2,'2002-12-23'),
         
     
     ],
     [
-        createData('ppt.pptx', 1,'2002-12-23',"cat-551554_1280.jpg"),
+        createData('img1.jpg', 1,'2002-12-23'),
     ]
     
     ])
