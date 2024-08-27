@@ -83,7 +83,7 @@ function DisplayList(props) {
     
     console.log(rows)
     return (
-        <div className=' lg:ps-20 md:ps-10 sm:p-0 flex flex-col xl:flex-row my-3'>
+        <div className='  flex flex-col xl:flex-row my-3'>
             <div className='flex flex-col'>
 
             
@@ -167,7 +167,7 @@ function DisplayList(props) {
         <textarea
             placeholder="Write Notes"
             name="message"
-            className="focus:outline-none w-full xl:w-36 focus:ring relative xl:m-5 mt-10 xl:mt-16 h-32 xl:h-80 xl:py-10 xl:px-8  text-sm text-cyan-500 placeholder-gray-400 bg-white border-0 rounded shadow outline-none"
+            className="focus:outline-none w-full xl:w-36 focus:ring relative xl:m-5 mt-10 xl:mt-0 h-32 xl:h-80 xl:py-10 xl:px-8  text-sm text-cyan-500 placeholder-gray-400 bg-white border-0 rounded shadow outline-none"
             
           />
         
