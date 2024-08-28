@@ -42,26 +42,39 @@ export default function SideBar(props) {
     document.getElementById('add').reset()
   }
   const drawer = (
-    <div className='p-10  overflow-y-scroll'>
-      <div className='font-extrabold text-cyan-500 text-3xl mb-16'>File Management</div>
-      <ul className='m-0 p-0 list-none'>
+    <div className='text-right pe-10 w-64 overflow-y-scroll bg-gradient-to-t  from-sky-900 from-20% to-slate-950 h-full'>
+
+      <div className='tracking-widest font-extrabold text-cyan-600 text-2xl mb-16 my-5'>File Management</div>
+
+      <div className='my-10  ps-5 text-cyan-200 text-left'>
+      <div className='py-2'>Total Records: {vendors.length} </div>
+      <LinearProgress variant="determinate" value={vendors.length*10} />
+      </div>
+
+
+      <ul className='  mt-16 p-0 list-none'>
         {vendors.map((text, index) => (
-          <li key={index} className='p-0'>
-            <button onClick={()=>setCur(index)} className='border-0 p-2 text-left font-mono text-base w-full rounded-r-lg m-1 hover:cursor-pointer ' style={{backgroundColor:(index==cur)?"rgb(207 250 254)":"white"}}>
-              <FolderIcon className='mx-2 text-cyan-500'/>{text}</button>
+          <li key={index} className='m-2 hover:border hover:border-solid border-cyan-200 rounded-md '>
+            <button onClick={()=>setCur(index)} className='bg-white/20 px-2 border-0 font-mono text-lg text-right rounded-r-lg m-1 hover:animate-pulse hover:cursor-pointer ' style={{color:(index==cur)?"white":"rgb(8 145 178)"}}>
+              <FolderIcon className='mx-2  '/>{text}</button>
           </li>
         ))}
       </ul>
-      <form id='add'>
-      <input onChange={(e)=>setnewvendor(e.target.value)} type='text' placeholder='Vendor name' className='me-3 p-2 border-0 font-bold bg-slate-100 text-black'/>
-      <button onClick={(e)=>addNew(e)} type='submit' className='bg-cyan-100 hover:cursor-pointer pb-2 rounded-lg border-0'>
+      <form id='add' className='my-12'>
+      <input onChange={(e)=>setnewvendor(e.target.value)} type='text' placeholder='Vendor name' className='me-3 w-32 p-2 border-0 font-bold bg-slate-100 text-black'/>
+      
+      <button onClick={(e)=>{
+        if(newvendor){
+          setnewvendor('')
+          addNew(e)
+        }
+        else alert("enter vendor name")
+
+      }} type='submit' className='bg-cyan-600 hover:bg-sky-200 hover:cursor-pointer rounded-lg border-0 hover:animate-spin'>
         <AddIcon className='pt-2'/>
       </button>
       </form>
-      <div className='my-3 p-2'>
-      <div>Total Records: {vendors.length} </div>
-      <LinearProgress variant="determinate" value={vendors.length*10} />
-      </div>
+      
       
     
     </div>
@@ -84,9 +97,9 @@ export default function SideBar(props) {
           ModalProps={{
             keepMounted: true,
           }}
+          
           sx={{
             display: {  md: 'none', xs:'block',sm:'block'},
-           
           }}>
           <button className='bg-cyan-200  border-0 p-2 m-2' onClick={handleDrawerClose}>close</button>
           {drawer}
@@ -104,10 +117,11 @@ export default function SideBar(props) {
         </Drawer>
         </div>
         <div className='lg:ms-20 md:ms-10 sm:m-0'>
-        <div className='ms-80 text-cyan-500 font-extrabold tracking-widest text-3xl mt-5'>
+        <div className=' text-cyan-600 tracking-widest font-extrabold uppercase text-xl mt-2'>
           {vendors[cur]}
         </div>
         <DisplayList curDoc={cur} />
+        
         
         </div>
     </div>

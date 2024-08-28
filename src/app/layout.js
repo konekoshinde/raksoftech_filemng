@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-slate-100">
+      <body className="bg-gradient-radial from-cyan-700 to-95% to-black text-white">
       <StyledEngineProvider injectFirst>
         {children}
         </StyledEngineProvider>
