@@ -15,12 +15,14 @@
     "@mui/icons-material": "^6.0.0",
     "@mui/material": "^6.0.0",
     "@mui/material-nextjs": "^6.0.0",
+    "@vercel/blob": "^0.23.4",
     "axios": "^1.7.5",
     "next": "14.2.6",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.3.0",
-    "task4": "file:"
+    "task4": "file:",
+    "vercel": "^37.1.2"
   },
   "devDependencies": {
     "eslint": "^8",

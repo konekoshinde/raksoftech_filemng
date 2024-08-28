@@ -1,9 +1,10 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Tooltip } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
+import axios from 'axios';
 
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 function Cell(props){
@@ -18,20 +19,20 @@ function Cell(props){
     )
 
 }
-function createData(name,id, date){
-    return({name,id,date})
+function createData(name,id, date,download){
+    return({name,id,date,download})
 }
 
 function DisplayList(props) {
     const [rows,setRows] = useState([
     [
-        createData('img', 1,'2004-04-12',"img1.jpg"),
-        createData('imgnuhidalnzx', 2,'2002-12-23',"img1.jpg"),
+        createData('img1', 1,'2004-04-12','https://zfmmdk49fjq8z4ix.public.blob.vercel-storage.com/img1-oE3hPOQOuq7Skd3SuuolModTBe5sBd.jpg'),
+        createData('img2', 2,'2002-12-23','https://zfmmdk49fjq8z4ix.public.blob.vercel-storage.com/cat-551554_1280-Rzfas9EqFmlTfEmysFIuReKcXrXHuC.jpg'),
         
     
     ],
     [
-        createData('ppt.pptx', 1,'2002-12-23',"cat-551554_1280.jpg"),
+        createData('img1', 1,'2002-12-23','https://zfmmdk49fjq8z4ix.public.blob.vercel-storage.com/img1-oE3hPOQOuq7Skd3SuuolModTBe5sBd.jpg'),
     ]
     
     ])
@@ -40,16 +41,26 @@ function DisplayList(props) {
         "name":"",
         "id":"",
         "date":"",
+        "download":""
         
     })
+    useEffect(()=>{
+        if(newrecord.id && newrecord.date && newrecord.name && newrecord.download){
+            console.log(newrecord)
+        setRows(
+            row=>{
+                const cur= [...row]
+                const data=createData(newrecord.name,newrecord.id,newrecord.date,newrecord.download)
+                
+                cur[props.curDoc]=[...cur[props.curDoc],data]
+                return cur
+            }
+        )
+        document.getElementById("frm").reset();
+    }
+    },[newrecord])
 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-        let temp=(event.target.files[0].name)
-        setNewrecord({...newrecord,name:temp});
-        console.log(newrecord)
-
-    };
+    
 
     if(props.curDoc===rows.length){
         
@@ -58,6 +69,7 @@ function DisplayList(props) {
         
     }
     const handleFileUpload = async () => {
+       
     if (!file) return;
     
     const formData = new FormData();
@@ -70,9 +82,14 @@ function DisplayList(props) {
         method: 'POST',
         body: formData,
       });
+      
 
       if (response.ok) {
         alert('File uploaded successfully');
+        const data=await response.json()
+        setNewrecord( {...newrecord,download:data.url} )
+        
+
       } else {
         alert('Failed to upload file');
       }
@@ -80,43 +97,28 @@ function DisplayList(props) {
       console.error('Error uploading file:', error);
     }
   };
-    
-    console.log(rows)
-    return (
-        <div className=' lg:ps-20 md:ps-10 sm:p-0 flex flex-col xl:flex-row'>
-            <div className='flex flex-col'>
+  
 
+    
+    //console.log(newrecord.download)
+    return (
+        <div className='  flex flex-col xl:flex-row my-3'>
+            <div className='flex flex-col'>
             
-            
-            <form id='frm' className='my-3'>
+        <form id='frm' className='my-3'>
                 <input className='m-1 py-1 border-0 font-bold  text-black' placeholder='id-number' type='number' onChange={(e)=>setNewrecord( {...newrecord,id:e.target.value} )}/>
-                
-                <input className='m-1 py-1 border-0 font-bold  text-black' placeholder='url' type="file" onChange={(e)=>{handleFileChange(e);
-                }
-                    } />
+                <input className='m-1 py-1 border-0 font-bold  text-black' placeholder='Name' type='text' onChange={(e)=>setNewrecord( {...newrecord,name:e.target.value} )}/>
+                <input className='m-1 py-1 border-0 font-bold  text-black'  type="file" onChange={(e)=>setFile(e.target.files[0])}/>
                 <input className='m-1 py-1 border-0 font-bold  text-black' placeholder='date' type="date" onChange={(e)=>setNewrecord( {...newrecord,date:e.target.value} )}/>
-                
                 <button className='pb-2 bg-cyan-100 hover:cursor-pointer rounded-lg border-0'  onClick={(e)=>{
                 e.preventDefault();
-                
                 handleFileUpload();
-                if(newrecord.id && newrecord.date && file && file.name){
-
-                    setRows(
-                        row=>{
-                            const cur= [...row]
-                            const data=createData(newrecord.name,newrecord.id,newrecord.date)
-                            
-                            cur[props.curDoc]=[...cur[props.curDoc],data]
-                            return cur
-                        }
-                    )
-                }
-                else alert("enter data")
-                document.getElementById("frm").reset();
+                
+                
                 }}><AddIcon className='pt-2'/></button>
                 
             </form>
+           
         
 
         <div className=' flex flex-col h-96 overflow-y-scroll'>
@@ -133,19 +135,19 @@ function DisplayList(props) {
                     
                     return(
                     
-                    <div className='flex flex-row md:gap-x-10 sm:px-5 xl:gap-x-28' style={{backgroundColor:(ind%2)?"rgb(207 250 254)":"white"}}>
+                    <div key={ind} className='flex flex-row md:gap-x-10 sm:px-5 xl:gap-x-28' style={{backgroundColor:(ind%2)?"rgb(207 250 254)":"white"}}>
                         
                         <Cell name={i.id}/>
                         <Cell name={i.name}/>
                         <Cell name={i.date}/>
                         <div>
                         
-                        <a href={`http://localhost:3000/${i.name}`} download={i.name} target="_blank" className='me-4'>
+                        <a href={`${i.download}?download=1`} download className='me-4'>
                         <ArrowCircleDownIcon className='text-cyan-500'/>
                         
                         </a>
 
-                        <a href={i.name} target="_blank">
+                        <a href={i.download} target='_blank'>
                             <FileOpenIcon className='text-cyan-500'/>
                         </a>
                         </div>
@@ -166,7 +168,7 @@ function DisplayList(props) {
         <textarea
             placeholder="Write Notes"
             name="message"
-            className="focus:outline-none w-full xl:w-36 focus:ring relative xl:m-5 mt-10 xl:mt-16 h-32 xl:h-80 xl:py-10 xl:px-8  text-sm text-cyan-500 placeholder-gray-400 bg-white border-0 rounded shadow outline-none"
+            className="focus:outline-none w-full xl:w-36 focus:ring relative xl:m-5 mt-10 xl:mt-0 h-32 xl:h-80 xl:py-10 xl:px-8  text-sm text-cyan-500 placeholder-gray-400 bg-white border-0 rounded shadow outline-none"
             
           />
         

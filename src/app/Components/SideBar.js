@@ -103,8 +103,8 @@ export default function SideBar(props) {
           {drawer}
         </Drawer>
         </div>
-        <div>
-        <div className='text-center text-cyan-500 font-extrabold tracking-widest text-3xl mt-5'>
+        <div className='lg:ms-20 md:ms-10 sm:m-0'>
+        <div className='ms-80 text-cyan-500 font-extrabold tracking-widest text-3xl mt-5'>
           {vendors[cur]}
         </div>
         <DisplayList curDoc={cur} />
@@ -118,4 +118,3 @@ export default function SideBar(props) {
 SideBar.propTypes = {
   window: PropTypes.func,
 };
-
