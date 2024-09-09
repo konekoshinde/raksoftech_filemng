@@ -1,22 +1,24 @@
 'use client'
-import SideBar from './Components/SideBar';
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 
+import SideBarnew from './Components/SideBarnew';
 
+import { useState } from 'react';
+import Projects from './Components/Projects';
+import Temp from './Components/Temp';
+import Rows from './Components/Rows';
+
+function Start(){
+
+}
 export default function Home() {
-  function down(){
-
-
-  }
+  const [link,setLink]=useState("Home");
   return (
-    <div className='m-0 p-0'>
-      
-    <SideBar/>
+    <div>
+    {/* <SideBarnew/> */}
+    <Rows/>
+    {/* <Temp/> */}
+    {/* <Projects curDoc={0}/> */}
+    {/* {link =="Projects" && } */}
     </div>
   );
 }

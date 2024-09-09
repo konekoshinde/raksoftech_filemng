@@ -22,6 +22,7 @@ export async function POST(request) {
   // const filePath = path.join(process.cwd(),'src', file.name);
 
   // fs.writeFileSync(filePath, buffer);
+  // console.log(upload)
 
   return NextResponse.json(upload);
 }

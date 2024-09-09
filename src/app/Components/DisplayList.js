@@ -119,10 +119,10 @@ function DisplayList(props) {
             
 
         <div className='flex flex-col xl:flex-row'>
-        <div className='flex flex-col '>
+        <div className='flex flex-col border-solid border-cyan-200 border '>
         
 
-        <div className=' flex flex-col h-96 overflow-y-scroll' style={{width:"50rem"}}>
+        <div className=' p-1 flex flex-col h-96 overflow-y-scroll' style={{width:"50rem"}}>
             <div className='flex flex-row  bg-cyan-700 sticky top-0 '>
             <div className='flex-1'><Cell name="NAME"/></div>
             <div className='w-10 my-auto mx-2'>ID</div>
@@ -168,19 +168,21 @@ function DisplayList(props) {
         <textarea
             placeholder="Write Notes"
             name="message"
-            className="focus:outline-none w-full xl:w-36 focus:ring relative xl:m-5 mt-10 xl:mt-0 h-32 xl:h-80 xl:py-10 xl:px-8  text-sm text-cyan-500 placeholder-gray-400 bg-white border-0 rounded shadow outline-none "
+            className="focus:outline-none w-full xl:w-36 focus:ring relative xl:m-5 mt-10 xl:mt-0 h-32 xl:h-80 xl:py-10 xl:px-8  text-sm text-white placeholder-gray-400 bg-cyan-300/40 border-solid border border-cyan-200 rounded outline-none "
             
           />
         
         </div>
         </div>
-        {!add && <button onClick={()=>setAdd(true)} className='p-2 hover:bg-cyan-200 bg-cyan-600 hover:cursor-pointer rounded-lg border-0 text-white'>New Entry</button>}
-        {add && <form id='frm' className='mb-10 flex flex-col w-80'>
+        <br/>
+        
+        {!add && <button onClick={()=>setAdd(true)} className=' p-2 hover:bg-cyan-200 bg-cyan-600 hover:cursor-pointer rounded-lg border-0 text-white'>New Entry</button>}
+        {add && <form id='frm' className=' border-solid border-cyan-200 border mb-10 flex flex-col w-80'>
                 <input className='p-2 m-1 py-1 border-0 font-bold bg-white/70 text-black' placeholder='id-number' type='number' onChange={(e)=>setNewrecord( {...newrecord,id:e.target.value} )}/>
                 <input className='p-2 m-1 py-1 border-0 font-bold bg-white/70 text-black' placeholder='Name' type='text' onChange={(e)=>setNewrecord( {...newrecord,name:e.target.value} )}/>
                 <input className='p-2 m-1 py-1 border-0 font-bold bg-white/70 text-black'  type="file" onChange={(e)=>setFile(e.target.files[0])}/>
                 <input className='p-2 m-1 py-1 border-0 font-bold bg-white/70 text-black' placeholder='date' type="date" onChange={(e)=>setNewrecord( {...newrecord,date:e.target.value} )}/>
-                <button className='pb-2 w-10 hover:animate-spin hover:bg-cyan-200 bg-cyan-600 hover:cursor-pointer rounded-lg border-0'  onClick={(e)=>{
+                <button type="submit" className='pb-2 w-10 hover:animate-spin hover:bg-cyan-200 bg-cyan-600 hover:cursor-pointer rounded-lg border-0'  onClick={(e)=>{
                 e.preventDefault();
                 if(newrecord.name && newrecord.date && file && newrecord.id){
                     handleFileUpload();
