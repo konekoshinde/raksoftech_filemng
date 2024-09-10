@@ -1,19 +1,15 @@
 'use client'
 
-import SideBarnew from './Components/SideBarnew';
 
-import { useState } from 'react';
-import Projects from './Components/Projects';
-import Temp from './Components/Temp';
 import Rows from './Components/Rows';
 
 function Start(){
 
 }
 export default function Home() {
-  const [link,setLink]=useState("Home");
+  // const [link,setLink]=useState("Home");
   return (
-    <div>
+    <div className='border-2 border-gray-300 rounded-xl border-solid'>
     {/* <SideBarnew/> */}
     <Rows/>
     {/* <Temp/> */}

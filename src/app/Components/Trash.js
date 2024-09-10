@@ -8,6 +8,8 @@ import ArrowCircleDown from '@mui/icons-material/ArrowCircleDown';
 import FileOpen from '@mui/icons-material/FileOpen';
 import { useContext } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 
 function createData(name,type,id, date,download){
     return({name,type,id,date,download})
@@ -20,34 +22,42 @@ function Trash() {
   
     
   return (
-    <div className=' bg-white'>
-      <div className='font-bold text-2xl text-center bg-gray-100 text-gray-600 mb-2'>
-        {trashRow.length} in trash
+    <div className=' bg-white mt-10 mx-5 my-auto' style={{width:"70vw"}}>
+      <div className='font-bold text-xl text-center flex flex-row justify-between text-gray-600 mb-2'>
+        <button onClick={()=>setTrash(false)} className='bg-green-700 text-white rounded-lg border-0 px-2 '><ArrowBackIosIcon className='text-xs'/></button>
+        <div className='rounded-lg w-fit xl:w-96 text-red-800 bg-red-100  drop-shadow-sm py-1  px-5 text-sm'>{trashRow.length} in trash</div>
       </div>
       
-        <div className='overflow-y-scroll' style={{height:"81vh"}}>
+        <div className='overflow-y-scroll overflow-x-hidden' style={{height:"70vh",width:"70vw"}}>
       
-      <div className='flex flex-row md:gap-x-20 gap-x-2 px-5 sm:px-10 hover:bg-gray-100 py-3 font-bold' style={{width:"75vw"}}>
-        <div className='text-xs md:text-base flex-1 flex flex-row md:gap-x-5 text-ellipsis overflow-hidden font-bold' style={{maxWidth:"40vw"}}>
+      <div className='bg-slate-200 h-3 flex flex-row xl:gap-x-20 lg:gap-x-10 gap-x-2 px-5 sm:px-10 hover:bg-gray-100 py-3'>
+        <div className='text-xs font-bold  flex-1 flex flex-row xl:gap-x-5 text-ellipsis overflow-hidden ' style={{maxWidth:"30vw"}}>
         
           <div className='flex flex-row gap-x-2'>
-          {/* <Description className='w-3 md:w-5 bg-gray-100 md:p-2'/>  */}
-          <div>
+          {/* <Description className='w-3 xl:w-5 bg-gray-100 xl:p-2'/>  */}
+          <div style={{maxWidth:"30vw"}}>
             <div>Name</div>
-            <div className='text-xs text-gray-500 font-normal'>type</div>
+            
           </div>
           </div>
           </div>
-        <div className='min-w-10 text-xs md:text-base text-center'>ID</div>
-        <div className='min-w-10 text-xs md:text-base  text-center '>yyyy-mm-dd</div>
+        <div className='min-w-10 text-xs  text-center'>ID</div>
+        <div className='min-w-10 text-xs   text-center '>yyyy-mm-dd</div>
         
         
       </div>
+      {trashRow.length==0 && 
+        <div style={{width:"75vw"}} className=' text-center font-extrabold text-5xl text-slate-300 py-10'>
+          Empty Folder
+          <br/>
+          <br/>
+        </div>
+        }
         { trashRow.map((i,ind)=>{
           
                 return (
-                <div key={ind} className='flex flex-row md:gap-x-20 gap-x-2 px-5 sm:px-10 hover:bg-gray-100 py-3' style={{width:"75vw"}}>
-                  <div className='text-xs md:text-base flex-1 flex flex-row md:gap-x-5 text-ellipsis overflow-hidden font-bold' style={{maxWidth:"40vw"}}>
+                <div key={ind} className=' hover:shadow-lg flex flex-row xl:gap-x-20 lg:gap-x-10 gap-x-2 px-5 sm:px-10 hover:bg-gray-100 py-3' style={{width:"75vw"}}>
+                  <div className='text-xs xl:text-base flex-1 flex flex-row xl:gap-x-5 text-ellipsis overflow-hidden font-bold' style={{maxWidth:"30vw"}}>
                     
                     <button onClick={()=>{
                       let data={"name":i.name,
@@ -77,13 +87,13 @@ function Trash() {
                       
                       alert("restored successfully")
                     }}
-                    
-                    >Restore</button>
+                    className='bg-green-100 border-0 rounded-full hover:cursor-pointer p-1 h-6'
+                    ><SettingsBackupRestoreIcon className='text-xs xl:text-base'/></button>
                     
                     <div className='flex flex-row gap-x-2'>
                     
                     
-                    <Description className='w-3 md:w-5 bg-gray-100 md:p-2'/> 
+                    <Description className='hidden md:block w-3 xl:w-5 bg-gray-100 xl:p-2'/> 
                     <div>
                       <div>{i.name}</div>
                       <div className='text-xs text-gray-500 font-normal'>{i.type}</div>
@@ -91,15 +101,16 @@ function Trash() {
                     </div>
                     
                     </div>
-                  <div className='min-w-10 text-xs md:text-base text-center'>{i.id}</div>
-                  <div className='min-w-10 text-xs md:text-base text-center '>{i.date}</div>
-                  <a href={`${i.download}?download=1`} download className='text-cyan-600 w-5'>
-                    <ArrowCircleDown />
+                  <div className='min-w-10 text-xs xl:text-base text-center'>{i.id}</div>
+                  <div className='min-w-10 text-xs xl:text-base text-center '>{i.date}</div>
+                  <a href={`${i.download}?download=1`} download className='text-cyan-600 '>
+                    <ArrowCircleDown className='text-xs xl:text-2xl shadow-lg' />
                   </a>
         
                   <a href={i.download} target='_blank' className='w-5'>
-                    <FileOpen />
+                    <FileOpen className='text-xs xl:text-2xl shadow-lg' />
                   </a>
+                  
                   
                 </div>
         
@@ -112,7 +123,7 @@ function Trash() {
 
       
 
-      <button onClick={()=>setTrash(false)}>Close</button>
+      
     </div>
   )
 }
