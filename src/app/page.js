@@ -1,7 +1,9 @@
 'use client'
 
 
+import AllFolders from './Components/AllFolders';
 import Rows from './Components/Rows';
+import SideBarnew from './Components/SideBarnew';
 
 function Start(){
 
@@ -9,9 +11,11 @@ function Start(){
 export default function Home() {
   // const [link,setLink]=useState("Home");
   return (
-    <div className='border-2 border-gray-300 rounded-xl border-solid'>
-    {/* <SideBarnew/> */}
-    <Rows/>
+    <div className='flex flex-row'>
+    <SideBarnew/>
+      <AllFolders/>
+      
+    {/* <Rows/> */}
     {/* <Temp/> */}
     {/* <Projects curDoc={0}/> */}
     {/* {link =="Projects" && } */}

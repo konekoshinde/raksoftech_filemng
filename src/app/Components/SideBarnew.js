@@ -7,24 +7,19 @@ import UpgradeIcon from '@mui/icons-material/Upgrade';
 import AddIcon from '@mui/icons-material/Add';
 import HomeIcon from '@mui/icons-material/Home';
 
-import { useContext } from 'react';
-import { AppContext } from './Rows';
 
 
 import WidgetsIcon from '@mui/icons-material/Widgets';
 
 
 function SideBarnew() {
-  const {addrow,setAddrow,trash,setTrash,open, setOpen}=useContext(AppContext);
-  
-    
-  
+ 
     
   return (
     <div>
         
        
-       <div className='xl:hidden fixed top-3 right-0 text-slate-500 bg-gray-50'>
+       <div className='hidden lg:block text-slate-500 bg-gray-50'>
        <div className='px-10 flex flex-col  ' style={{height:"70vh"}}>
 
        <h2>FILE SYSTEM</h2>
@@ -35,13 +30,9 @@ function SideBarnew() {
         <br/>
         <br/>
         <div className='bg-gray-300 w-48 h-1 mx-auto'></div>
-        <button className='mt-5 rounded-lg h-10 p-1 bg-inherit border-0 text-left text-slate-600 bg-red-300 flex flex-row justify-between hover:bg-black hover:text-white hover:cursor-pointer'onClick={()=>setTrash(true)}> Trash <DeleteIcon /> </button>
+        <button className='mt-5 rounded-lg h-10 p-1 bg-inherit border-0 text-left text-slate-600 bg-red-300 flex flex-row justify-between hover:bg-black hover:text-white hover:cursor-pointer'> Trash <DeleteIcon /> </button>
 
-        <button className='mt-2 rounded-lg h-10 pt-1 bg-green-300 text-white border-0 text-left flex flex-row justify-between hover:bg-black hover:text-white hover:cursor-pointer' onClick={()=>{
-          setTrash(false);
-          setAddrow(true);
-          setOpen(false);
-        }}> Add File <AddIcon/> </button>
+        <button className='mt-2 rounded-lg h-10 pt-1 bg-green-300 text-white border-0 text-left flex flex-row justify-between hover:bg-black hover:text-white hover:cursor-pointer'> Add File <AddIcon/> </button>
        </div>
         <div className=' text-slate-800 h-20 flex flex-col justify-between p-10'>
             <div  className='flex flex-row justify-between hover:bg-black hover:text-white text-slate-500'>Support<ContactSupportIcon/></div>

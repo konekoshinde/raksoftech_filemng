@@ -48,7 +48,7 @@ function Folder() {
             </div>
             <div className='flex flex-row  my-2 mx-3'>
             <input name="folder" type="checkbox" className='w-3 me-5 ms-3 xl:ms-5 hover:shadow-xl ' onChange={(e)=>{
-                      let checkboxes = document.getElementsByName('folder');
+                      let checkboxes = document.getElementsByName('chkbox');
                     
                       for(let i=0, n=checkboxes.length;i<n;i++) {
                         checkboxes[i].checked = e.target.checked;
