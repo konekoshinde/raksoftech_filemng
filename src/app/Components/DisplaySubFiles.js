@@ -108,7 +108,7 @@ export default function DisplaySubFiles() {
             })
         }
         </div>
-        <div className='flex flex-row justify-between'>
+        <div className='flex flex-row justify-between mb-1'>
 
         <button onClick={()=>{
             if(star)setStar(false);
