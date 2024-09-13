@@ -5,7 +5,8 @@ import { NewContext } from './AllFolders'
 function AddContent() {
     
 
-    const{add,setAdd,curFolder,setCurFolder,curFiles,setCurFiles,allfolder,setAllFolder,allfiles,setAllFiles,hierarchy,file,setFile,folder,setFolder}= useContext(NewContext);
+    const{alldocs,setAlldocs,trashDocs,setTrashDocs, hierarchy,setHierarchy,select,setSelect,add,setAdd,file,setFile,folder,setFolder}= useContext(NewContext);
+
     const [uploadfile, setuploadFile] = useState(null);
 
     
@@ -20,7 +21,7 @@ function AddContent() {
    
 
     const handleFileUpload = async () => {
-        if(add==2)setNewrecord({...newrecord,download:"nil"})
+        if(add==2)setNewrecord({...newrecord,download:"nil",type:"folder"})
 
         if (!uploadfile) return;
         const formData = new FormData();
@@ -43,27 +44,14 @@ function AddContent() {
     };
     useEffect(()=>{
         //console.log(newrecord)
-          if(((add==1 && newrecord.type ) || add==2)  && newrecord.download &&  newrecord.id && newrecord.date && newrecord.name ){
-            if(add==1){
-              setAllFiles([...allfiles,newrecord]);
-              setCurFiles([...curFiles,newrecord]);
-              setAdd(0)
-              setFile(true)
-            }
-            else{
-                let data={
-                    "name":newrecord.name,
-                    "id":newrecord.id,
-                    "path":hierarchy,
-                    "date":newrecord.date,
-                }
-                setAllFolder([...allfolder,data]);
-                setCurFolder([...curFolder,data])
-                
-                alert("folder uploaded successfully")
-                setAdd(0)
-                setFolder(true)
-              }
+          if(newrecord.type  && newrecord.download &&  newrecord.id && newrecord.date && newrecord.name ){
+            setAlldocs([...alldocs,newrecord]);
+            setAdd(0)
+            alert("document added successfully")
+            if(newrecord.download=="nil")setFolder(true);
+            else setFile(true);
+            
+            
         }
     },[newrecord])
    
@@ -74,10 +62,15 @@ function AddContent() {
         
         <form id='frm' className='bg-white shadow-2xl p-20 rounded-lg w-1/2 h-1/2 xl:w-1/4 xl:h-1/2 mx-auto flex flex-col ' >
       <h2 className='text-slate-500 text-base xl:text-lg '>Add Data in {hierarchy} </h2>
+
         <input className='p-2 my-2 border-slate-200 text-xs xl:text-lg text-slate-500 border-1 border-solid' placeholder='id-number' type='number' onChange={(e)=>setNewrecord( {...newrecord,id:e.target.value} )}/>
+
         <input className='p-2 my-2 border-slate-200 text-xs xl:text-lg text-slate-500 border-1 border-solid'  placeholder='Name' type='text' onChange={(e)=>setNewrecord( {...newrecord,name:e.target.value} )}/>
+
         {add==1 && <input className='p-2 my-2 border-slate-200 text-xs xl:text-lg text-slate-500 border-1 border-solid'  type="file" onChange={(e)=>setuploadFile(e.target.files[0])}/>}
+
         <input className='p-2 my-2 border-slate-200 text-xs xl:text-lg text-slate-500 border-1 border-solid' placeholder='date' type="date" onChange={(e)=>setNewrecord( {...newrecord,date:e.target.value} )}/>
+
         <div className='flex flex-row justify-between my-5'>
         <button onClick={()=>{
           

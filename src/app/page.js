@@ -2,7 +2,7 @@
 
 
 import AllFolders from './Components/AllFolders';
-import Rows from './Components/Rows';
+
 import SideBarnew from './Components/SideBarnew';
 
 function Start(){
@@ -12,7 +12,7 @@ export default function Home() {
   // const [link,setLink]=useState("Home");
   return (
     <div className='flex flex-row'>
-    <SideBarnew/>
+     {/* <SideBarnew/> */}
       <AllFolders/>
       
     {/* <Rows/> */}
