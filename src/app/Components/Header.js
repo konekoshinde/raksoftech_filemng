@@ -8,7 +8,7 @@ import { NewContext } from './AllFolders';
 function Header() {
   const {alldocs,setAlldocs,trashDocs,setTrashDocs, hierarchy,setHierarchy,select,setSelect,add,setAdd,file,setFile,folder,setFolder}=useContext(NewContext)
   return (
-    <div className='border-1 border-solid border-gray-200 h-10 mb-1 text-sm lg:text-base bg-gray-200  flex flex-row justify-between ' >
+    <div className=' h-10 mb-1 text-sm lg:text-base bg-gray-100  flex flex-row justify-between ' >
                     <div style={{maxWidth:"25vw"}} className='text-center flex-1 flex flex-row max-w-96 h-10 overflow-hidden text-ellipsis'>
                     <input type='checkbox'onChange={(e)=>{
                       setSelect([]);

@@ -60,7 +60,7 @@ function AddContent() {
   return (
     <div className=' fixed top-0 left-0 h-full  w-full flex flex-col justify-center align-middle  bg-slate-100'>
         
-        <form id='frm' className='bg-white shadow-2xl p-20 rounded-lg w-1/4 h-1/2 xl:w-1/4 xl:h-1/2 mx-auto flex flex-col ' >
+        <form id='frm' className='bg-white shadow-2xl p-10 lg:p-20 rounded-lg w-1/2 h-1/2 xl:w-1/4 xl:h-1/2 mx-auto flex flex-col ' >
       <h2 className='text-slate-500 text-base xl:text-lg '>Add Data in {hierarchy} </h2>
 
         <input className='p-2 my-2 border-slate-200 text-xs xl:text-lg text-slate-500 border-1 border-solid' placeholder='id-number' type='number' onChange={(e)=>setNewrecord( {...newrecord,id:e.target.value} )}/>

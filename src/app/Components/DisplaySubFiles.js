@@ -27,7 +27,7 @@ export default function DisplaySubFiles() {
 
         { ((starDoc.length==0 && star) || curDocs.length==0) &&
         <div className='font-extrabold text-xl lg:text-5xl text-center text-slate-300 pt-5 lg:pt-10 '>
-            <div>Empty Folder</div>
+            {folder? <div>Empty Folder</div>:<div>No Files</div>}
             <span className='text-lg'>click on above options to add docs</span>
         </div>
         }
@@ -113,7 +113,7 @@ export default function DisplaySubFiles() {
         <button onClick={()=>{
             if(star)setStar(false);
             else setSelect([]),setStar(true);
-            }} className=' h-8 text-yellow-700 font-bold border-0 hover:cursor-pointer rounded-lg' style={{backgroundColor:(star)?"rgb(254 240 138":"inherit"}}>Starred</button>
+            }} className=' h-6 text-yellow-700 font-bold border-0 hover:cursor-pointer rounded-lg' style={{backgroundColor:(star)?"rgb(254 240 138":"inherit"}}>Starred</button>
         {select.length>0   && <button onClick={()=>{
             setTrashDocs([...trashDocs,...select])
             setAlldocs(alldocs.filter(it=>!select.includes(it)));

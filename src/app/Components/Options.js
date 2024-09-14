@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 
 function Options() {
     const {open,alldocs,setAlldocs,trash,curFolderName, setcurFolderName,setTrash, hierarchy,setHierarchy,add,setAdd,file,setFile,folder,setFolder}=useContext(NewContext)
-    let t=[];
+    let t=['Home'];
     for(let i=0;i<alldocs.length;i++){
         if(alldocs[i].type==="folder")t.push(alldocs[i].name)
     }

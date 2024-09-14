@@ -13,7 +13,10 @@ function NewTrash() {
     const {alldocs,setAlldocs,trashDocs,setTrashDocs,trash,setTrash,file,setFile}=useContext(NewContext);
     // console.log(trashDocs)
   return (
-    <div className=''>
+    <div className='' style={{height:"47vh"}}>
+        {trashDocs.length==0 && <div className='font-extrabold text-xl lg:text-5xl text-center text-slate-300 pt-5 lg:pt-10 '>
+            Empty Bin
+        </div>} 
         {
             trashDocs.map((i,ind)=>{
                 return(
