@@ -35,6 +35,7 @@ function AllFolders() {
     const [trashDocs,setTrashDocs]=useState([]);
     const [hierarchy,setHierarchy]=useState("Home");
     const [select,setSelect]=useState([]);
+    const [starDoc,setstarDoc]=useState([]);
     
     
     const [add,setAdd]=useState(0);
@@ -52,7 +53,7 @@ function AllFolders() {
 
   return (
     <div className='mx-auto' >
-        <NewContext.Provider value={{open,setOpen,alldocs,setAlldocs,curFolderName, setcurFolderName,trash,setTrash,trashDocs,setTrashDocs, hierarchy,setHierarchy,select,setSelect,add,setAdd,file,setFile,folder,setFolder}}>
+        <NewContext.Provider value={{starDoc,setstarDoc,open,setOpen,alldocs,setAlldocs,curFolderName, setcurFolderName,trash,setTrash,trashDocs,setTrashDocs, hierarchy,setHierarchy,select,setSelect,add,setAdd,file,setFile,folder,setFolder}}>
         <div className='flex flex-row'>
             <SideBarnew/>
             <div className='md:px-5 px-2 rounded-lg lg:px-10 w-full border-slate-300 border-1 border-solid'>

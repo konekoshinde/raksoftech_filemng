@@ -31,7 +31,7 @@ function Header() {
                           }
                           setSelect(t);
                           // console.log("chkbox",select);
-                         // e.target.checked=false
+                         
                       }
                   }}/>
                             

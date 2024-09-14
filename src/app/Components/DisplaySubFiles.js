@@ -8,9 +8,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function DisplaySubFiles() {
-    const {alldocs,setAlldocs,trashDocs,setTrashDocs, hierarchy,setHierarchy,select,setSelect,add,setAdd,file,setFile,folder,setFolder}=useContext(NewContext);
+    const {starDoc,setstarDoc,alldocs,setAlldocs,trashDocs,setTrashDocs, hierarchy,setHierarchy,select,setSelect,add,setAdd,file,setFile,folder,setFolder}=useContext(NewContext);
 
-    const [starDoc,setstarDoc]=useState([]);
+    
     const [threedots,setThreedots]=useState(-1);
     const [star,setStar]=useState(false);
 
@@ -34,7 +34,7 @@ export default function DisplaySubFiles() {
         
         {
             curDocs.map((i,ind)=>{
-                if((star && starDoc.includes(i.id)) || !star )
+                if((star && starDoc.includes(i)) || !star )
                 return(
                     <div className=' h-10 mb-1 text-sm lg:text-base  border-1 border-gray-100 border-solid flex flex-row justify-between hover:shadow-lg hover:bg-yellow-50' style={{position:(i.id==threedots)?"relative":"static"}}>
                     <div style={{maxWidth:"24vw"}} className=' flex-1 flex flex-row max-w-96 h-10 overflow-hidden text-ellipsis'>
@@ -46,12 +46,12 @@ export default function DisplaySubFiles() {
                         else setSelect(select.filter(it=>it.id!=i.id))
                     }} className='me-2'/>
                     {
-                        starDoc.includes(i.id)?(
-                            <button onClick={()=>setstarDoc(starDoc.filter(it=>it!=i.id))} className='border-0 bg-inherit '>
+                        starDoc.includes(i)?(
+                            <button onClick={()=>setstarDoc(starDoc.filter(it=>it!=i))} className='border-0 bg-inherit '>
                                 <StarIcon className='text-lg my-auto'/>
                             </button>
                     ):(
-                        <button onClick={()=>setstarDoc([...starDoc,i.id])} className='border-0 bg-inherit'>
+                        <button onClick={()=>setstarDoc([...starDoc,i])} className='border-0 bg-inherit'>
                             <StarBorderIcon className='text-lg my-auto'/>
                         </button>
                     )
@@ -113,7 +113,7 @@ export default function DisplaySubFiles() {
         <button onClick={()=>{
             if(star)setStar(false);
             else setSelect([]),setStar(true);
-            }} className=' h-8 text-yellow-700 font-bold border-0 hover:cursor-pointer rounded-lg' style={{backgroundColor:(star)?"rgb(254 240 138":"inherit"}}>view starred</button>
+            }} className=' h-8 text-yellow-700 font-bold border-0 hover:cursor-pointer rounded-lg' style={{backgroundColor:(star)?"rgb(254 240 138":"inherit"}}>Starred</button>
         {select.length>0   && <button onClick={()=>{
             setTrashDocs([...trashDocs,...select])
             setAlldocs(alldocs.filter(it=>!select.includes(it)));

@@ -60,7 +60,7 @@ function AddContent() {
   return (
     <div className=' fixed top-0 left-0 h-full  w-full flex flex-col justify-center align-middle  bg-slate-100'>
         
-        <form id='frm' className='bg-white shadow-2xl p-20 rounded-lg w-1/2 h-1/2 xl:w-1/4 xl:h-1/2 mx-auto flex flex-col ' >
+        <form id='frm' className='bg-white shadow-2xl p-20 rounded-lg w-1/4 h-1/2 xl:w-1/4 xl:h-1/2 mx-auto flex flex-col ' >
       <h2 className='text-slate-500 text-base xl:text-lg '>Add Data in {hierarchy} </h2>
 
         <input className='p-2 my-2 border-slate-200 text-xs xl:text-lg text-slate-500 border-1 border-solid' placeholder='id-number' type='number' onChange={(e)=>setNewrecord( {...newrecord,id:e.target.value} )}/>
@@ -77,7 +77,7 @@ function AddContent() {
           if(add==1)setFile(true);
           else setFolder(true);
           setAdd(0)
-          }} className='hover:bg-black hover:text-white border-slate-100  border-solid hover:cursor-pointer rounded-xl p-2 w-20'>Close</button>
+          }} className='p-2 text-black border-0  w-12 lg:w-20 rounded-lg hover:cursor-pointer hover:bg-black'>Close</button>
         
         <button onClick={(e)=>{
           e.preventDefault();
@@ -86,7 +86,7 @@ function AddContent() {
             
           }
           else alert("Enter data")
-        }} className='bg-green-700 border-0 text-white w-20 rounded-lg hover:cursor-pointer hover:bg-black '>add</button>
+        }} className='bg-green-700 border-0 text-white w-12 lg:w-20 rounded-lg hover:cursor-pointer hover:bg-black '>add</button>
         
         </div>
         
