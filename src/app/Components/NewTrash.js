@@ -25,19 +25,20 @@ function NewTrash() {
                     <div style={{maxWidth:"24vw"}} className=' flex-1 flex flex-row max-w-96 h-10 overflow-hidden text-ellipsis'>
 
                     <button onClick={()=>{
-                        if(i.type==="folder")setAlldocs([...alldocs,i]);
+                        setAlldocs([...alldocs,i]);
+                        
                         setTrashDocs(trashDocs.filter(it=>it.id!=i.id));
                         alert("restored successfully")
                     }} className='border-0 hover:cursor-pointer hover:bg-yellow-200 p-1 bg-inherit'><RestoreIcon className='text-base me-1'/></button>
 
                     
                     <div className=' ms-2 flex flex-col'>
-                    <div className='my-auto '>{i.name}</div>
+                    <div className='my-auto lg:text-base text-xs'>{i.name}</div>
                     <div className='my-auto text-xs text-gray-500 '>{i.type}</div>
                     </div>
                     </div>
                     <div className='min-w-10 my-auto text-center'>{i.id}</div>
-                    <div className=' text-center my-auto w-32 text-ellipsis h-10 text-sm lg:w-fit overflow-hidden flex flex-row justify-around font-bold'>
+                    <div className=' text-center my-auto w-32 text-ellipsis h-10 text-xs md:text-sm lg:w-fit overflow-hidden flex flex-row justify-around font-bold'>
                         <AccountCircleIcon className='me-1'/>
                         <div>
                             information

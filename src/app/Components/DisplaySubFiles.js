@@ -16,8 +16,9 @@ export default function DisplaySubFiles() {
 
     
     let curDocs= (alldocs.filter((i,ind)=>
-        i.path==hierarchy && (folder)?i.type==="folder":i.download!="nil"
-    ))
+        ( (folder && i.type=="folder") || (file && i.download!="nil")) && i.path===hierarchy
+     ))
+    
     
   return (
     <div>
@@ -48,24 +49,24 @@ export default function DisplaySubFiles() {
                     {
                         starDoc.includes(i)?(
                             <button onClick={()=>setstarDoc(starDoc.filter(it=>it!=i))} className='border-0 bg-inherit '>
-                                <StarIcon className='text-lg my-auto'/>
+                                <StarIcon className='lg:text-lg my-auto text-xs'/>
                             </button>
                     ):(
                         <button onClick={()=>setstarDoc([...starDoc,i])} className='border-0 bg-inherit'>
-                            <StarBorderIcon className='text-lg my-auto'/>
+                            <StarBorderIcon className='lg:text-lg my-auto text-xs'/>
                         </button>
                     )
                     }
-                    <DescriptionIcon className='my-auto bg-gray-100 p-2'/>
+                    <DescriptionIcon className='my-auto bg-gray-100 p-2  hidden lg:block'/>
                     <div className=' ms-2 flex flex-col'>
-                    <div className='my-auto '>{i.name}</div>
+                    <div className='my-auto lg:text-base text-xs'>{i.name}</div>
                     <div className='my-auto text-xs text-gray-500 '>{i.type}</div>
                     </div>
                     </div>
                     <div className='min-w-10 my-auto text-center'>{i.id}</div>
-                    <div className=' text-center my-auto w-32 text-ellipsis h-10 text-sm lg:w-fit overflow-hidden flex flex-row justify-around font-bold'>
+                    <div className=' text-center my-auto w-32 text-ellipsis h-10 text-xs lg:text-sm lg:w-fit overflow-hidden flex flex-row justify-around font-bold'>
                         <AccountCircleIcon className='me-1'/>
-                        <div>
+                        <div >
                             information
                             <br/>
                             <span className='font-normal text-sm'>text</span>
@@ -83,15 +84,15 @@ export default function DisplaySubFiles() {
 
                             {
                             (file)?<div>
-                                <a href={`${i.download}?download=1`} download className='bg-gray-200 text-gray-600 hover:bg-gray-500 text-center rounded-md hover:text-white p-1'>
+                                <a href={`${i.download}?download=1`} download className=' border-0 bg-white text-gray-600 hover:bg-gray-500 text-center rounded-md hover:text-white p-1 hover:cursor-pointer'>
                                 download</a>
                             <br/>
-                            <a href={i.download} target="_blank" className='bg-gray-200 text-gray-600 hover:bg-gray-500 text-center rounded-md hover:text-white p-1 '>open</a>
+                            <a href={i.download} target="_blank" className=' border-0 bg-white text-gray-600 hover:bg-gray-500 text-center rounded-md hover:text-white p-1 hover:cursor-pointer '>open</a>
                             </div>:
                             <button onClick={()=>{
                                 setHierarchy(i.path+`>${i.name}`);
                                 setThreedots(false);
-                            }} className='border-0 bg-white text-gray-600 hover:bg-gray-500 text-center rounded-md hover:text-white p-1 hover:cursor-pointer'>open</button>
+                            }} className='border-0 bg-white text-gray-600 hover:bg-gray-500 text-left rounded-md hover:text-white p-1 hover:cursor-pointer'>open</button>
                             }
                             <button onClick={()=>{
                                 setTrashDocs([...trashDocs,i])
@@ -100,7 +101,7 @@ export default function DisplaySubFiles() {
                                 setThreedots(false);
                                 alert("deleted successfully")
                             
-                            }}className='border-0 bg-white text-gray-600 hover:bg-gray-500 text-center rounded-md hover:text-white p-1 hover:cursor-pointer'>delete</button>
+                            }}className='border-0 bg-white text-gray-600 hover:bg-gray-500 text-left rounded-md hover:text-white p-1 hover:cursor-pointer'>delete</button>
                         </div>
                     }
                     </div>

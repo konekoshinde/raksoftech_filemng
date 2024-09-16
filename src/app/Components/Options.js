@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 
 function Options() {
     const {open,alldocs,setAlldocs,trash,curFolderName, setcurFolderName,setTrash, hierarchy,setHierarchy,add,setAdd,file,setFile,folder,setFolder}=useContext(NewContext)
-    let t=['Home'];
+    let t=[];
     for(let i=0;i<alldocs.length;i++){
         if(alldocs[i].type==="folder")t.push(alldocs[i].name)
     }
@@ -33,15 +33,19 @@ function Options() {
             className='border-solid text-slate-700 border-slate-300 rounded-lg hidden md:block'
             options={t}
             onInputChange={(event, newInputValue) => {
-                
-                let temp= -1;
-                for(let i=0;i<alldocs.length;i++){
-                    if(alldocs[i].type==="folder" && newInputValue==alldocs[i].name){
-                        temp=i;
-                        break;
+                if(newInputValue==="Home")setHierarchy("Home");
+                else{
+                    let temp= -1;
+                    for(let i=0;i<alldocs.length;i++){
+                        if(alldocs[i].type==="folder" && newInputValue==alldocs[i].name){
+                            temp=i;
+                            break;
+                        }
                     }
+                    if(temp!=-1)setHierarchy(alldocs[temp].path+`>${alldocs[temp].name}`)
+
                 }
-                if(temp!=-1)setHierarchy(alldocs[temp].path+`>${alldocs[temp].name}`)
+                
             }}
             sx={{width:500, maxWidth:"40vw"}}
             renderInput={(params) => <TextField {...params} 

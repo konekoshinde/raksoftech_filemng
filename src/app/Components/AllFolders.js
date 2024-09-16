@@ -31,7 +31,14 @@ export const   NewContext=createContext(null);
 function AllFolders() {
 
 
-    const[alldocs,setAlldocs]=useState([]);
+    const[alldocs,setAlldocs]=useState([{
+        "name":"Home",
+        "type":"folder",
+        "id":"",
+        "path":"",
+        "date":"",
+        "download":"",
+    }]);
     const [trashDocs,setTrashDocs]=useState([]);
     const [hierarchy,setHierarchy]=useState("Home");
     const [select,setSelect]=useState([]);
@@ -43,6 +50,7 @@ function AllFolders() {
     const[file,setFile]=useState(true);
     const[folder,setFolder]=useState(false);
     const [curFolderName, setcurFolderName]=useState(hierarchy.substring(hierarchy.lastIndexOf('>')))
+    console.log(alldocs,hierarchy)
 
     useEffect(()=>{
         setcurFolderName(hierarchy.substring(hierarchy.lastIndexOf('>')+1))
