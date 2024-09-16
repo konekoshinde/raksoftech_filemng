@@ -82,7 +82,7 @@ function Hierarchy() {
 
         
 
-        <div className=' font-bold bg-slate-50  max-w-96 text-gray-600  px-2 py-1 flex flex-row rounded-lg gap-x-2 lg:gap-x-5'>
+        <div className=' font-bold bg-slate-50  w-96 text-gray-600  px-2 py-1 flex flex-row rounded-lg gap-x-2 lg:gap-x-5'>
         <button  className='   text-xs flex flex-row my-auto gap-x-2 border-gray-300 rounded-md p-1 border-0 bg-inherit  font-bold ' ><FolderOpenIcon className='text-sm '/> Recycle Bin</button>
 
         
